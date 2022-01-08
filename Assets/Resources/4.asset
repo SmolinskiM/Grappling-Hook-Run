@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medal_gold: 0
   medal_silver: 0
-  best_time: 999999
+  best_time: 0

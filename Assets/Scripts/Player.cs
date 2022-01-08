@@ -38,10 +38,6 @@ public class Player : MonoBehaviour
         {
             velocity.y = 0;
         }
-        else
-        {
-            //velocity.y += gravity * Time.deltaTime;
-        }
 
         if(!is_grounded || is_grappling)
         {
@@ -54,13 +50,7 @@ public class Player : MonoBehaviour
             move_z = Input.GetAxisRaw("Vertical");
         }
 
-        //transform.Translate(move_x * speed * Time.deltaTime, 0, move_z * speed * Time.deltaTime);
-        if(!is_grappling)
-        {
-            rb.velocity = new Vector3(move_x * speed, 0, move_z * speed).normalized * 10;
-        }
-
-        Debug.LogError(velocity.y);
+        transform.Translate(move_x * speed * Time.deltaTime, 0, move_z * speed * Time.deltaTime);
 
         rotate_horizontal = Input.GetAxis("Mouse X");
 
