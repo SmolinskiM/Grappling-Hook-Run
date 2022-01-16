@@ -12,16 +12,14 @@ public class Player : MonoBehaviour
     
     float move_x;
     float move_z;
-    float speed = 10;
-    float gravity = -9.81f;
+    readonly float speed = 10;
 
     float rotate_horizontal;
     float rotate_vertical;
-    float rotate_limit = 90;
+    readonly float rotate_limit = 90;
     bool is_grounded;
     bool allowed_jump;
 
-    Vector3 velocity;
     Grappling grappling;
 
     void Start()
@@ -34,10 +32,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Movement and camera
-        if(is_grappling)
-        {
-            velocity.y = 0;
-        }
 
         if(!is_grounded || is_grappling)
         {
@@ -50,17 +44,31 @@ public class Player : MonoBehaviour
             move_z = Input.GetAxisRaw("Vertical");
         }
 
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionX;
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionZ;
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+
         transform.Translate(move_x * speed * Time.deltaTime, 0, move_z * speed * Time.deltaTime);
 
         rotate_horizontal = Input.GetAxis("Mouse X");
 
-        gameObject.transform.Rotate(0, rotate_horizontal, 0);
+        transform.Rotate(0, rotate_horizontal, 0);
         
         rotate_vertical -= Input.GetAxis("Mouse Y");
         rotate_vertical = Mathf.Clamp(rotate_vertical, -rotate_limit, rotate_limit);
         Camera.main.transform.localRotation = Quaternion.Euler(rotate_vertical, 0, 0);
 
-        if(is_grounded || (!is_grounded && is_grappling))
+        if(is_grounded || is_grappling)
         {
             allowed_jump = true;
         }

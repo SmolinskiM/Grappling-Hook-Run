@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3007231690368315088}
   - component: {fileID: 3007231690368315103}
   m_Layer: 11
-  m_Name: Rocker_plaform
+  m_Name: Rocker_Plaform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 061f6a3cc8fba4e46bfc477e3c972e5d, type: 2}
+  - {fileID: 2100000, guid: 9d3e5701723730042b076e583bee8d16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

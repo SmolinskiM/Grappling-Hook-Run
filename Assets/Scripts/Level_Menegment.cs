@@ -118,8 +118,8 @@ public class Level_Menegment : MonoBehaviour
         if(time_current < level.best_time || level.best_time == 0)
         {
             level.best_time = time_current;
-            //Debug.LogError(level.best_time);
-            //Debug.LogError(time_current);
+            Debug.LogError(level.best_time);
+            Debug.LogError(time_current);
         }
     }
 

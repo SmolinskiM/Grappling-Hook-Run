@@ -67,12 +67,8 @@ public class Grappling : MonoBehaviour
 
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, range, rocker))
         {
-            is_grappling.is_grappling = true;
-            grapple_point = hit.point;
-            joint = player.gameObject.AddComponent<SpringJoint>();
-            joint.autoConfigureConnectedAnchor = false;
-            joint.connectedAnchor = grapple_point;
 
+            Creative_joint(hit);
             float distance_form_point = Vector3.Distance(player.position, grapple_point);
 
             joint.maxDistance = distance_form_point * 0.8f;
@@ -82,20 +78,22 @@ public class Grappling : MonoBehaviour
             joint.damper = 7f;
             joint.massScale = 4.5f;
 
-            lr.positionCount = 2;
         }
         else if(Physics.Raycast(camera.position, camera.forward, out hit, range, scrubber))
         {
-            is_grappling.is_grappling = true;
-            grapple_point = hit.point;
-            joint = player.gameObject.AddComponent<SpringJoint>();
-            joint.autoConfigureConnectedAnchor = false;
-            joint.connectedAnchor = grapple_point;
-
-            lr.positionCount = 2;
+            Creative_joint(hit);
             is_scrubber = true;
             
         }
+    }
+    public void Creative_joint(RaycastHit hit)
+    {
+        is_grappling.is_grappling = true;
+        grapple_point = hit.point;
+        joint = player.gameObject.AddComponent<SpringJoint>();
+        joint.autoConfigureConnectedAnchor = false;
+        joint.connectedAnchor = grapple_point;
+        lr.positionCount = 2;
     }
 
     public void Stop_grapple()
