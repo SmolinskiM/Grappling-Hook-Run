@@ -6,36 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class Select_Level : MonoBehaviour
 {
-    public Menu menu;
-    public Level[] level;
+    private Menu menu;
+    
+    private Level[] level;
 
-    public Image medal;
-    public Text time_best;
-    public Text time_gold;
-    public Text time_silver;
+    [SerializeField] private Image medal;
 
-    private void Start()
+    [SerializeField] private Text timeBest;
+    [SerializeField] private Text timeGold;
+    [SerializeField] private Text timeSilver;
+
+    private void Awake()
     {
         menu = GetComponent<Menu>();
         level = Resources.LoadAll<Level>("");
-        //Debug.LogError(level[menu.level - 1].best_time);
+        //Debug.LogError(level[menu.level - 1].bestTime);
     }
 
-    private void Update()
+    public void LevelChange()
     {  
-        if(level[menu.level - 1].best_time == 0)
+        if(level[menu.level - 1].bestTime == 0)
         {
-            time_best.text = "--.-";
+            timeBest.text = "--.-";
             medal.color = Color.white;
         }
         else
         {
-            time_best.text = level[menu.level - 1].best_time.ToString("f1");
-            if (level[menu.level - 1].best_time <= level[menu.level - 1].medal_gold)
+            timeBest.text = level[menu.level - 1].bestTime.ToString("f1");
+            if (level[menu.level - 1].bestTime <= level[menu.level - 1].medalGold)
             {
                 medal.color = Color.yellow;
             }
-            else if (level[menu.level - 1].best_time <= level[menu.level - 1].medal_silver)
+            else if (level[menu.level - 1].bestTime <= level[menu.level - 1].medalSilver)
             {
                 medal.color = new Color((float)192 / 255, (float)192 / 255, (float)192 / 255);
             }
@@ -45,14 +47,14 @@ public class Select_Level : MonoBehaviour
             }
         }
 
-        time_gold.text = level[menu.level - 1].medal_gold.ToString("f1");
-        time_silver.text = level[menu.level - 1].medal_silver.ToString("f1");
+        timeGold.text = level[menu.level - 1].medalGold.ToString("f1");
+        timeSilver.text = level[menu.level - 1].medalSilver.ToString("f1");
 
     }
 
     public void Start_Level()
     {
-        if (menu.level == 1 || level[menu.level - 2].best_time != 0)
+        if (menu.level == 1 || level[menu.level - 2].bestTime != 0)
         {
             SceneManager.LoadScene("Level_" + menu.level);
         }

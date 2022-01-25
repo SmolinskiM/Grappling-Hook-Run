@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody rb;
-
-    public bool is_grappling;
-    public bool finish = false;
-    public bool dead;
+    public bool isGrappling;
+    public bool isDead;
+    public bool isFinished;
     
-    float move_x;
-    float move_z;
-    readonly float speed = 10;
+    private bool isGrounded;
+    private bool allowedJump;
+    
+    private float moveX;
+    private float moveZ;
+    private float rotateHorizontal;
+    private float rotateVertical;
+    private readonly float speed = 10;
+    private readonly float rotateLimit = 90;
 
-    float rotate_horizontal;
-    float rotate_vertical;
-    readonly float rotate_limit = 90;
-    bool is_grounded;
-    bool allowed_jump;
-
-    Grappling grappling;
+    private Rigidbody rb;
+    private Grappling grappling;
 
     void Start()
     {
@@ -32,16 +31,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Movement and camera
-
-        if(!is_grounded || is_grappling)
+        if(!isGrounded || isGrappling)
         {
-            move_x = Input.GetAxisRaw("Horizontal") * 0.3f;
-            move_z = Input.GetAxisRaw("Vertical") * 0.3f;
+            moveX = Input.GetAxisRaw("Horizontal") * 0.3f;
+            moveZ = Input.GetAxisRaw("Vertical") * 0.3f;
         }
         else
         {
-            move_x = Input.GetAxisRaw("Horizontal");
-            move_z = Input.GetAxisRaw("Vertical");
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveZ = Input.GetAxisRaw("Vertical");
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
@@ -58,29 +56,29 @@ public class Player : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
-        transform.Translate(move_x * speed * Time.deltaTime, 0, move_z * speed * Time.deltaTime);
+        transform.Translate(moveX * speed * Time.deltaTime, 0, moveZ * speed * Time.deltaTime);
 
-        rotate_horizontal = Input.GetAxis("Mouse X");
+        rotateHorizontal = Input.GetAxis("Mouse X");
 
-        transform.Rotate(0, rotate_horizontal, 0);
+        transform.Rotate(0, rotateHorizontal, 0);
         
-        rotate_vertical -= Input.GetAxis("Mouse Y");
-        rotate_vertical = Mathf.Clamp(rotate_vertical, -rotate_limit, rotate_limit);
-        Camera.main.transform.localRotation = Quaternion.Euler(rotate_vertical, 0, 0);
+        rotateVertical -= Input.GetAxis("Mouse Y");
+        rotateVertical = Mathf.Clamp(rotateVertical, -rotateLimit, rotateLimit);
+        Camera.main.transform.localRotation = Quaternion.Euler(rotateVertical, 0, 0);
 
-        if(is_grounded || is_grappling)
+        if(isGrounded || isGrappling)
         {
-            allowed_jump = true;
+            allowedJump = true;
         }
         else
         {
-            allowed_jump = false;
+            allowedJump = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && allowed_jump)
+        if(Input.GetKeyDown(KeyCode.Space) && allowedJump)
         {
             rb.AddForce(0, 300, 0);
-            grappling.Stop_grapple();
+            grappling.StopGrapple();
         }
     }
 
@@ -88,11 +86,11 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("Ground"))
         {
-            is_grounded = true;
+            isGrounded = true;
         }
         else if(other.CompareTag("Finish"))
         {
-            finish = true;
+            isFinished = true;
         }
         else if(other.CompareTag("Jump"))
         {
@@ -104,12 +102,12 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Spikes"))
         {
-            dead = true;
+            isDead = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        is_grounded = false;
+        isGrounded = false;
     }
 }

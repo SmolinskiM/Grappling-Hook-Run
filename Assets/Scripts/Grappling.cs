@@ -5,27 +5,34 @@ using UnityEngine;
 public class Grappling : MonoBehaviour
 {
     /* Note
-     * zielony - platformy do skakania
-     * czerwony - dead
-     * zółty - przyciąganie
-     * niebieski - huśtanie 
+     * green - jump pad
+     * red - dead
+     * yellow - scrubber
+     * blue - rocker
     */
-    bool is_scrubber;
-    float range = 20;
+    [SerializeField] private LayerMask rocker;
+    [SerializeField] private LayerMask scrubber;
 
-    public LayerMask rocker;
-    public LayerMask scrubber;
-    public Transform gun_tip, camera, player;
-    Vector3 grapple_point;
-    SpringJoint joint;
-    Player is_grappling;
-    Rigidbody rb;
-    LineRenderer lr;
+    [SerializeField] private Transform gunTip, camera, player;
+    
+    private bool isScrubber;
+    
+    private readonly float range = 20;
+
+    private Rigidbody rb;
+    
+    private LineRenderer lr;
+    
+    private SpringJoint joint;
+    
+    private Vector3 grapplePoint;
+
+    private Player playerScr;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>(); 
-        is_grappling = GetComponentInParent<Player>();
+        playerScr = GetComponentInParent<Player>();
     }
 
     private void Awake()
@@ -34,32 +41,32 @@ public class Grappling : MonoBehaviour
     }
 
     private void Update()
-    {      
+    {
+
         if (Input.GetMouseButtonDown(0))
         {
             Start_grapple();
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            is_grappling.is_grappling = false;
-            Stop_grapple();
+            StopGrapple();
         }
 
 
-        if(is_scrubber)
+        if(isScrubber)
         {
-            rb.velocity = (grapple_point - transform.position).normalized * 10;
+            rb.velocity = (grapplePoint - transform.position).normalized * 10;
 
-            if (Vector3.Distance(player.position, grapple_point) <= 0.5f)
+            if (Vector3.Distance(player.position, grapplePoint) <= 0.5f)
             {
-                Stop_grapple();
+                StopGrapple();
             }
         }
     }
 
     private void LateUpdate()
     {
-        Draw_rope();
+        DrawRope();
     }
 
     private void Start_grapple()
@@ -68,11 +75,11 @@ public class Grappling : MonoBehaviour
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, range, rocker))
         {
 
-            Creative_joint(hit);
-            float distance_form_point = Vector3.Distance(player.position, grapple_point);
+            CreativeJoint(hit);
+            float distanceFormPoint = Vector3.Distance(player.position, grapplePoint);
 
-            joint.maxDistance = distance_form_point * 0.8f;
-            joint.minDistance = distance_form_point * 0.25f;
+            joint.maxDistance = distanceFormPoint * 0.8f;
+            joint.minDistance = distanceFormPoint * 0.25f;
 
             joint.spring = 4.5f;
             joint.damper = 7f;
@@ -81,36 +88,37 @@ public class Grappling : MonoBehaviour
         }
         else if(Physics.Raycast(camera.position, camera.forward, out hit, range, scrubber))
         {
-            Creative_joint(hit);
-            is_scrubber = true;
+            CreativeJoint(hit);
+            isScrubber = true;
             
         }
     }
-    public void Creative_joint(RaycastHit hit)
+    public void CreativeJoint(RaycastHit hit)
     {
-        is_grappling.is_grappling = true;
-        grapple_point = hit.point;
+        playerScr.isGrappling = true;
+        grapplePoint = hit.point;
         joint = player.gameObject.AddComponent<SpringJoint>();
         joint.autoConfigureConnectedAnchor = false;
-        joint.connectedAnchor = grapple_point;
+        joint.connectedAnchor = grapplePoint;
         lr.positionCount = 2;
     }
 
-    public void Stop_grapple()
+    public void StopGrapple()
     {
         lr.positionCount = 0;
-        is_scrubber = false;
+        isScrubber = false;
+        playerScr.isGrappling = false;
         Destroy(joint);
     }
 
-    void Draw_rope()
+    void DrawRope()
     {
         if(!joint)
         {
             return;
         }
 
-        lr.SetPosition(0, gun_tip.position);
-        lr.SetPosition(1, grapple_point);
+        lr.SetPosition(0, gunTip.position);
+        lr.SetPosition(1, grapplePoint);
     }
 }

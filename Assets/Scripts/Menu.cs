@@ -1,56 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    int x_max = 12;
-    int x_min = 0;
-    
-    int y_max = 0;
-    int y_min = -12;
-    public Transform selected;
+    public int level { get; private set;}
 
-    public int level = 1;
+    private readonly int levelInRow = 5;
+    private readonly int levelInCollum = 2;
+
+    private Select_Level select_Level;
+
+    [SerializeField] private Button buttonLeft;
+    [SerializeField] private Button buttonRight;
+    [SerializeField] private Button buttonUp;
+    [SerializeField] private Button buttonDown;
+
+    [SerializeField] private Transform selected;
 
     private void Start()
     {
+        select_Level = GetComponent<Select_Level>();
+        level = 1;
         Time.timeScale = 1;
+        select_Level.LevelChange();
+        buttonLeft.onClick.AddListener(Left);
+        buttonRight.onClick.AddListener(Right);
+        buttonUp.onClick.AddListener(Up);
+        buttonDown.onClick.AddListener(Down);
     }
 
     public void Left()
     {
-        if(selected.transform.position.x != x_min)
+        if(level % levelInRow != 1)
         {
             level--;
             selected.transform.Translate(-3, 0, 0);
+            select_Level.LevelChange();
         }
     }
 
     public void Right()
     {
-        if (selected.transform.position.x != x_max)
+        if (level % levelInRow != 0)
         {
             level++;
             selected.transform.Translate(3, 0, 0);
+            select_Level.LevelChange();
         }
     }
 
     public void Up()
     {
-        if (selected.transform.position.y != y_max)
+        if (level > levelInRow)
         {
             level -= 5;
             selected.transform.Translate(0, 3, 0);
+            select_Level.LevelChange();
         }
     }
 
     public void Down()
     {
-        if(selected.transform.position.y != y_min)
+        if(level + levelInRow <= levelInRow * levelInCollum)
         {
             level += 5;
             selected.transform.Translate(0, -3, 0);
+            select_Level.LevelChange();
         }
     }
 

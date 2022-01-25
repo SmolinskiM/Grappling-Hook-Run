@@ -1088,18 +1088,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847605893}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1296791161}
-        m_MethodName: Left
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1001 &930157725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1323,18 +1312,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1047208094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1296791161}
-        m_MethodName: Right
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1047208094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1653,8 +1631,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd9032d2a91be546aa739e9283d5a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: {fileID: 1976465521}
   level: 1
+  buttonLeft: {fileID: 847605895}
+  buttonRight: {fileID: 1047208093}
+  buttonUp: {fileID: 1886480921}
+  buttonDown: {fileID: 1990155775}
+  selected: {fileID: 1976465521}
 --- !u!114 &1296791162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1667,12 +1649,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff44ca0a5e4586c468e4c2f5bbe5bacc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 0}
-  level: []
   medal: {fileID: 1638299946}
-  time_best: {fileID: 413320667}
-  time_gold: {fileID: 228480648}
-  time_silver: {fileID: 461344013}
+  timeBest: {fileID: 413320667}
+  timeGold: {fileID: 228480648}
+  timeSilver: {fileID: 461344013}
 --- !u!1001 &1371162971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2190,18 +2170,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1886480919}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1296791161}
-        m_MethodName: Up
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1925171267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,15 +2384,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1990155773}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1296791161}
-        m_MethodName: Down
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []

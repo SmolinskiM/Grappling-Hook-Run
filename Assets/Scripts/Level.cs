@@ -5,9 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Level", menuName = "Level")]
 public class Level : ScriptableObject
 {
-
-    public float medal_gold;
-    public float medal_silver;
-    public float best_time;
-
+    public float medalGold;
+    public float medalSilver;
+    public float bestTime;
 }

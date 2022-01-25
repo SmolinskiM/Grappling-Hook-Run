@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46187b81931a73345a27e8f99161cac6, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: 
-  medal_gold: 5
-  medal_silver: 10
-  best_time: 0
+  medalGold: 15
+  medalSilver: 20
+  bestTime: 0

@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6692929273040333573}
   - component: {fileID: 908789112724492861}
   m_Layer: 0
-  m_Name: Time
+  m_Name: TimeEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1057,18 +1057,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9049808758883712174}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9049808759467649055}
-        m_MethodName: Restart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &9049808759034325662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,18 +1175,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9049808759034325635}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9049808759467649055}
-        m_MethodName: Home
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &9049808759055259869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,18 +1293,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9049808759055259870}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9049808759467649055}
-        m_MethodName: Next_Level
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &9049808759392510329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,6 +1500,8 @@ GameObject:
   - component: {fileID: 9049808759467649052}
   - component: {fileID: 9049808759467649054}
   - component: {fileID: 9049808759467649055}
+  - component: {fileID: 6835445571458974284}
+  - component: {fileID: 2773059139334535718}
   m_Layer: 0
   m_Name: Level_Meneger
   m_TagString: Untagged
@@ -1583,16 +1552,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e305b6dd76dbf84ebbb6e6a689e5c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
-  pause_screen: {fileID: 9049808759493788858}
-  finish_screen: {fileID: 9049808758711336337}
-  start_screen: {fileID: 9049808758244201459}
   player: {fileID: 0}
-  time: {fileID: 0}
-  time_end: {fileID: 908789112724492861}
-  time_gold: {fileID: 6415426864692281882}
-  time_silver: {fileID: 8065772836334636786}
+  goNextLevel: {fileID: 9049808759055259871}
+  goHomePause: {fileID: 9049808759466131567}
+  restartPause: {fileID: 9049808758219313040}
+  goHomeFinish: {fileID: 9049808759034325632}
+  restartFinish: {fileID: 9049808758883712175}
+--- !u!114 &6835445571458974284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9049808759467649053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 022b6e887bbe71a4ab5ac545df77b7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  pauseScreen: {fileID: 9049808759493788858}
+  finishScreen: {fileID: 9049808758711336337}
+  startScreen: {fileID: 9049808758244201459}
+--- !u!114 &2773059139334535718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9049808759467649053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b590fb97577ca469fd4eda59e664eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   medal: {fileID: 7583706377981546164}
+  level: {fileID: 0}
+  time: {fileID: 0}
+  timeEnd: {fileID: 908789112724492861}
+  timeGold: {fileID: 6415426864692281882}
+  timeSilver: {fileID: 8065772836334636786}
 --- !u!1 &9049808759493788854
 GameObject:
   m_ObjectHideFlags: 0

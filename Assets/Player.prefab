@@ -449,9 +449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09bbad9dee10fc479eceb45ed85d825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_grappling: 0
-  finish: 0
-  dead: 0
+  isGrappling: 0
+  isDead: 0
+  isFinished: 0
 --- !u!114 &8677312587650234301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ MonoBehaviour:
   scrubber:
     serializedVersion: 2
     m_Bits: 4096
-  gun_tip: {fileID: 6305318611496347206}
+  gunTip: {fileID: 6305318611496347206}
   camera: {fileID: 6305318611368049494}
   player: {fileID: 6305318611390675841}
 --- !u!54 &6305318611390675840
