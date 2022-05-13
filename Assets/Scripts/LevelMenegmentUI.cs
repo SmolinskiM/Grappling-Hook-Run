@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Level_Menegment_UI : MonoBehaviour
+public class LevelMenegmentUI : MonoBehaviour
 {
     private bool gameStart;
 
@@ -36,18 +35,13 @@ public class Level_Menegment_UI : MonoBehaviour
             getMedal.EndGame();
             finishScreen.gameObject.SetActive(true);
         }
-
-        if ((Input.GetKeyDown(KeyCode.Escape) && !pauseScreen.isActiveAndEnabled && !finishScreen.isActiveAndEnabled) || player.isDead)
+        if(pauseScreen.isActiveAndEnabled)
         {
-            Cursor.lockState = CursorLockMode.None;
-            pauseScreen.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            SetPauseScreenOff();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && pauseScreen.isActiveAndEnabled && !player.isDead)
+        else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            pauseScreen.gameObject.SetActive(false);
-            Time.timeScale = 1;
+            SetPauseScreenOn();
         }
     }
 
@@ -63,5 +57,47 @@ public class Level_Menegment_UI : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
+    }
+
+    void SetPauseScreenOn()
+    {
+        if(player.isDead)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            pauseScreen.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            return;
+        }
+
+        if(!Input.GetKeyDown(KeyCode.Escape))
+        {
+            return;
+        }
+
+        if(finishScreen.isActiveAndEnabled)
+        {
+            return;
+        }
+
+        Cursor.lockState = CursorLockMode.None;
+        pauseScreen.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    void SetPauseScreenOff()
+    {
+        if (!Input.GetKeyDown(KeyCode.Escape))
+        {
+            return;
+        }
+
+        if(player.isDead)
+        {
+            return;
+        }
+
+        Cursor.lockState = CursorLockMode.Locked;
+        pauseScreen.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }

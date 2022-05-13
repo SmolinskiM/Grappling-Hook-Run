@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Level_Menegment : MonoBehaviour
+public class LevelMenegment : MonoBehaviour
 {
     private Player player;
 
@@ -26,7 +26,6 @@ public class Level_Menegment : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKey("r"))
         {
             Restart();

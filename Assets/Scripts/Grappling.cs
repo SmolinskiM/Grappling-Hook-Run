@@ -45,7 +45,7 @@ public class Grappling : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Start_grapple();
+            StartGrapple();
         }
         else if(Input.GetMouseButtonUp(0))
         {
@@ -69,7 +69,7 @@ public class Grappling : MonoBehaviour
         DrawRope();
     }
 
-    private void Start_grapple()
+    private void StartGrapple()
     {
 
         if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, range, rocker))

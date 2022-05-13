@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46187b81931a73345a27e8f99161cac6, type: 3}
-  m_Name: 8
+  m_Name: 2-3
   m_EditorClassIdentifier: 
-  medal_gold: 0
-  medal_silver: 0
-  best_time: 0
+  medalGold: 0
+  medalSilver: 0
+  bestTime: 0

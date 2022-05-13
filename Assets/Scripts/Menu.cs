@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public int level { get; private set;}
+    public int Level { get; private set;}
 
     private readonly int levelInRow = 5;
     private readonly int levelInCollum = 2;
 
-    private Select_Level select_Level;
+    private SelectLevel selectLevel;
 
     [SerializeField] private Button buttonLeft;
     [SerializeField] private Button buttonRight;
@@ -21,10 +21,10 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
-        select_Level = GetComponent<Select_Level>();
-        level = 1;
+        selectLevel = GetComponent<SelectLevel>();
+        Level = 1;
         Time.timeScale = 1;
-        select_Level.LevelChange();
+        selectLevel.LevelChange();
         buttonLeft.onClick.AddListener(Left);
         buttonRight.onClick.AddListener(Right);
         buttonUp.onClick.AddListener(Up);
@@ -33,41 +33,41 @@ public class Menu : MonoBehaviour
 
     public void Left()
     {
-        if(level % levelInRow != 1)
+        if(Level % levelInRow != 1)
         {
-            level--;
+            Level--;
             selected.transform.Translate(-3, 0, 0);
-            select_Level.LevelChange();
+            selectLevel.LevelChange();
         }
     }
 
     public void Right()
     {
-        if (level % levelInRow != 0)
+        if (Level % levelInRow != 0)
         {
-            level++;
+            Level++;
             selected.transform.Translate(3, 0, 0);
-            select_Level.LevelChange();
+            selectLevel.LevelChange();
         }
     }
 
     public void Up()
     {
-        if (level > levelInRow)
+        if (Level > levelInRow)
         {
-            level -= 5;
+            Level -= 5;
             selected.transform.Translate(0, 3, 0);
-            select_Level.LevelChange();
+            selectLevel.LevelChange();
         }
     }
 
     public void Down()
     {
-        if(level + levelInRow <= levelInRow * levelInCollum)
+        if(Level + levelInRow <= levelInRow * levelInCollum)
         {
-            level += 5;
+            Level += 5;
             selected.transform.Translate(0, -3, 0);
-            select_Level.LevelChange();
+            selectLevel.LevelChange();
         }
     }
 

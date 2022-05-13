@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4406299023077856087}
   - component: {fileID: 4406299023077856086}
   m_Layer: 0
-  m_Name: Spikes_plaform
-  m_TagString: Spikes
+  m_Name: DeathWall
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

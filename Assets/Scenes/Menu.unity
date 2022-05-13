@@ -239,8 +239,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1296791162}
-        m_MethodName: Start_Level
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1631,7 +1631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd9032d2a91be546aa739e9283d5a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
   buttonLeft: {fileID: 847605895}
   buttonRight: {fileID: 1047208093}
   buttonUp: {fileID: 1886480921}
@@ -1653,6 +1652,7 @@ MonoBehaviour:
   timeBest: {fileID: 413320667}
   timeGold: {fileID: 228480648}
   timeSilver: {fileID: 461344013}
+  selectLevel: {fileID: 48306791}
 --- !u!1001 &1371162971
 PrefabInstance:
   m_ObjectHideFlags: 0

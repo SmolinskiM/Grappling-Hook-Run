@@ -51,8 +51,6 @@ public class GetMedal : MonoBehaviour
         if (timeCurrent < level.bestTime || level.bestTime == 0)
         {
             level.bestTime = timeCurrent;
-            Debug.LogError(level.bestTime);
-            Debug.LogError(timeCurrent);
         }
     }
 }

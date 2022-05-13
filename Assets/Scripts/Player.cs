@@ -42,30 +42,27 @@ public class Player : MonoBehaviour
             moveZ = Input.GetAxisRaw("Vertical");
         }
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
+        if(!isGrappling)
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionX;
-            rb.constraints = RigidbodyConstraints.None;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-        }
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionX;
+                rb.constraints = RigidbodyConstraints.None;
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+            }
 
-        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
-        {
-            rb.constraints = RigidbodyConstraints.FreezePositionZ;
-            rb.constraints = RigidbodyConstraints.None;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionZ;
+                rb.constraints = RigidbodyConstraints.None;
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+            }
         }
-
-        transform.Translate(moveX * speed * Time.deltaTime, 0, moveZ * speed * Time.deltaTime);
 
         rotateHorizontal = Input.GetAxis("Mouse X");
-
-        transform.Rotate(0, rotateHorizontal, 0);
-        
         rotateVertical -= Input.GetAxis("Mouse Y");
         rotateVertical = Mathf.Clamp(rotateVertical, -rotateLimit, rotateLimit);
-        Camera.main.transform.localRotation = Quaternion.Euler(rotateVertical, 0, 0);
-
+        
         if(isGrounded || isGrappling)
         {
             allowedJump = true;
@@ -80,6 +77,14 @@ public class Player : MonoBehaviour
             rb.AddForce(0, 300, 0);
             grappling.StopGrapple();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Translate(moveX * speed * Time.deltaTime, 0, moveZ * speed * Time.deltaTime);
+
+        transform.Rotate(0, rotateHorizontal, 0);
+        Camera.main.transform.localRotation = Quaternion.Euler(rotateVertical, 0, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -100,7 +105,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Spikes"))
+        if(collision.gameObject.CompareTag("Death"))
         {
             isDead = true;
         }
