@@ -10,6 +10,8 @@ public class SelectLevel : MonoBehaviour
     
     private Level[] Level;
 
+    private Image padlock;
+    
     [SerializeField] private Image medal;
 
     [SerializeField] private Text timeBest;
@@ -20,6 +22,7 @@ public class SelectLevel : MonoBehaviour
 
     private void Awake()
     {
+        padlock = selectLevel.GetComponent<Image>();
         menu = GetComponent<Menu>();
         Level = Resources.LoadAll<Level>("");
         selectLevel.onClick.AddListener(StartLevel);
@@ -27,7 +30,15 @@ public class SelectLevel : MonoBehaviour
 
     public void LevelChange()
     {
-        
+        if(menu.Level == 1 || Level[menu.Level - 2].bestTime != 0)
+        {
+            padlock.color = new Vector4(255, 255, 255, 0);
+        }
+        else
+        {
+            padlock.color = new Vector4(255, 255, 255, 255);
+        }
+
         if(Level[menu.Level - 1].bestTime == 0)
         {
             timeBest.text = "--.-";
