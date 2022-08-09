@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelMenegment : MonoBehaviour
 {
-    private Player player;
 
     [SerializeField] private Button goNextLevel;
     [SerializeField] private Button goHomePause;
     [SerializeField] private Button restartPause;
     [SerializeField] private Button goHomeFinish;
     [SerializeField] private Button restartFinish;
+    
+    private Player player;
 
     void Start()
     {

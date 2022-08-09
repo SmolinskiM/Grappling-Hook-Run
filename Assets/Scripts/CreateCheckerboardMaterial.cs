@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CreateCheckerboardMaterial : MonoBehaviour
 {
+    private Texture2D mainTexture;
+    
     [SerializeField] private int mainTexWidth;
     [SerializeField] private int mainTexHeight;
-    private Texture2D mainTexture;
 
     void Start()
     {
@@ -21,17 +22,17 @@ public class CreateCheckerboardMaterial : MonoBehaviour
 
     void CreatePattern()
     {
-        for (int i = 0; i < mainTexWidth; i++)
+        for (int x = 0; x < mainTexWidth; x++)
         {
-            for (int j = 0; j < mainTexHeight; j++)
+            for (int y = 0; y < mainTexHeight; y++)
             {
-                if (((i + j) % 2) == 1)
+                if (((x + y) % 2) == 1)
                 {
-                    mainTexture.SetPixel(i, j, Color.black);
+                    mainTexture.SetPixel(x, y, Color.black);
                 }
                 else
                 {
-                    mainTexture.SetPixel(i, j, Color.white);
+                    mainTexture.SetPixel(x, y, Color.white);
                 }
             }
         }

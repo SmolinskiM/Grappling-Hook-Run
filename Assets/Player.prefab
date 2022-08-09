@@ -471,7 +471,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   gunTip: {fileID: 6305318611496347206}
-  camera: {fileID: 6305318611368049494}
+  _camera: {fileID: 6305318611368049494}
   player: {fileID: 6305318611390675841}
 --- !u!54 &6305318611390675840
 Rigidbody:
@@ -521,7 +521,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7a387fd6e4f46414c84c9f325195725e, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

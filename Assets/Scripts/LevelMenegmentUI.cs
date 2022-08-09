@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class LevelMenegmentUI : MonoBehaviour
 {
-    private bool gameStart;
-
-    private Player player;
-    private GetMedal getMedal;
 
     [SerializeField] private Canvas pauseScreen;
     [SerializeField] private Canvas finishScreen;
     [SerializeField] private Canvas startScreen;
+    
+    private bool gameStart;
+
+    private Player player;
+    private GetMedal getMedal;
 
     void Start()
     {

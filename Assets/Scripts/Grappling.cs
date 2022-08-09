@@ -13,7 +13,7 @@ public class Grappling : MonoBehaviour
     [SerializeField] private LayerMask rocker;
     [SerializeField] private LayerMask scrubber;
 
-    [SerializeField] private Transform gunTip, camera, player;
+    [SerializeField] private Transform gunTip, _camera, player;
     
     private bool isScrubber;
     
@@ -72,7 +72,7 @@ public class Grappling : MonoBehaviour
     private void StartGrapple()
     {
 
-        if (Physics.Raycast(camera.position, camera.forward, out RaycastHit hit, range, rocker))
+        if (Physics.Raycast(_camera.position, _camera.forward, out RaycastHit hit, range, rocker))
         {
 
             CreativeJoint(hit);
@@ -86,7 +86,7 @@ public class Grappling : MonoBehaviour
             joint.massScale = 4.5f;
 
         }
-        else if(Physics.Raycast(camera.position, camera.forward, out hit, range, scrubber))
+        else if(Physics.Raycast(_camera.position, _camera.forward, out hit, range, scrubber))
         {
             CreativeJoint(hit);
             isScrubber = true;

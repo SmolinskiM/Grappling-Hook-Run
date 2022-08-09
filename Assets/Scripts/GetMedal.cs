@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GetMedal : MonoBehaviour
 {
-    private float startTime;
-    private float timeCurrent;
     
     [SerializeField] private Image medal;
 
@@ -17,6 +15,8 @@ public class GetMedal : MonoBehaviour
     [SerializeField] private Text timeGold;
     [SerializeField] private Text timeSilver;
 
+    private float startTime;
+    private float timeCurrent;
 
     void Start()
     {
@@ -48,9 +48,9 @@ public class GetMedal : MonoBehaviour
 
         timeEnd.text = timeCurrent.ToString("f1");
 
-        if (timeCurrent < level.bestTime || level.bestTime == 0)
+        if (timeCurrent < BestTimeSaveManager.Instance.bestTime.bestTime[level.levelNr-1] || BestTimeSaveManager.Instance.bestTime.bestTime[level.levelNr-1] == 0)
         {
-            level.bestTime = timeCurrent;
+            BestTimeSaveManager.Instance.SaveBestTime(timeCurrent, level.levelNr-1);
         }
     }
 }

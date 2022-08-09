@@ -6,11 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class SelectLevel : MonoBehaviour
 {
-    private Menu menu;
-    
-    private Level[] Level;
-
-    private Image padlock;
     
     [SerializeField] private Image medal;
 
@@ -19,18 +14,24 @@ public class SelectLevel : MonoBehaviour
     [SerializeField] private Text timeSilver;
 
     [SerializeField] private Button selectLevel;
+    
+    private Menu menu;
+    
+    private Level[] level;
+
+    private Image padlock;
 
     private void Awake()
     {
         padlock = selectLevel.GetComponent<Image>();
         menu = GetComponent<Menu>();
-        Level = Resources.LoadAll<Level>("");
+        level = Resources.LoadAll<Level>("");
         selectLevel.onClick.AddListener(StartLevel);
     }
 
     public void LevelChange()
     {
-        if(menu.Level == 1 || Level[menu.Level - 2].bestTime != 0)
+        if(menu.Level == 1 || BestTimeSaveManager.Instance.bestTime.bestTime[menu.Level - 2] != 0)
         {
             padlock.color = new Vector4(255, 255, 255, 0);
         }
@@ -39,19 +40,19 @@ public class SelectLevel : MonoBehaviour
             padlock.color = new Vector4(255, 255, 255, 255);
         }
 
-        if(Level[menu.Level - 1].bestTime == 0)
+        if (BestTimeSaveManager.Instance.bestTime.bestTime[menu.Level - 1] == 0)
         {
             timeBest.text = "--.-";
             medal.color = Color.white;
         }
         else
         {
-            timeBest.text = Level[menu.Level - 1].bestTime.ToString("f1");
-            if (Level[menu.Level - 1].bestTime <= Level[menu.Level - 1].medalGold)
+            timeBest.text = BestTimeSaveManager.Instance.bestTime.bestTime[menu.Level - 1].ToString("f1");
+            if (BestTimeSaveManager.Instance.bestTime.bestTime[menu.Level - 1] <= level[menu.Level - 1].medalGold)
             {
                 medal.color = Color.yellow;
             }
-            else if (Level[menu.Level - 1].bestTime <= Level[menu.Level - 1].medalSilver)
+            else if (BestTimeSaveManager.Instance.bestTime.bestTime[menu.Level - 1] <= level[menu.Level - 1].medalSilver)
             {
                 medal.color = new Color((float)192 / 255, (float)192 / 255, (float)192 / 255);
             }
@@ -61,14 +62,14 @@ public class SelectLevel : MonoBehaviour
             }
         }
 
-        timeGold.text = Level[menu.Level - 1].medalGold.ToString("f1");
-        timeSilver.text = Level[menu.Level - 1].medalSilver.ToString("f1");
+        timeGold.text = level[menu.Level - 1].medalGold.ToString("f1");
+        timeSilver.text = level[menu.Level - 1].medalSilver.ToString("f1");
 
     }
 
     public void StartLevel()
     {
-        if (menu.Level == 1 || Level[menu.Level - 2].bestTime != 0)
+        if (menu.Level == 1 || BestTimeSaveManager.Instance.bestTime.bestTime[menu.Level - 2] != 0)
         {
             SceneManager.LoadScene("Level_" + menu.Level);
         }
